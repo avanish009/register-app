@@ -8,7 +8,7 @@ pipeline {
         APP_NAME = "register-app-pipeline"
         RELEASE = "1.0.0"
         DOCKER_USER = "cocosonny"
-        DOCKER_PASS = credentials('docker-hub-credentials') // Assuming you have Jenkins credentials with ID 'docker-hub-credentials' storing Docker Hub credentials
+        DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
         JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
@@ -42,6 +42,13 @@ pipeline {
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push('latest')
                     }
+                }
+            }
+        }
+        stage("Debug") {
+            steps {
+                script {
+                    println "JENKINS_API_TOKEN: ${JENKINS_API_TOKEN}"
                 }
             }
         }
