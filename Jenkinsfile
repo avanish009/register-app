@@ -35,6 +35,13 @@ pipeline {
                 sh "mvn test"
             }
         }
+        stage("Debug") {
+            steps {
+                script {
+                    println "DOCKER_PASS = credentials("dockerhub")"
+                }
+            }
+        }
         stage("Build & Push Docker Image") {
             steps {
                 script {
@@ -46,12 +53,6 @@ pipeline {
                 }
             }
         }
-        stage("Debug") {
-            steps {
-                script {
-                    println "DOCKER_PASS = credentials("dockerhub")"
-                }
-            }
-        }
+        
     }
 }
