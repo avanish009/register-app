@@ -9,7 +9,7 @@ pipeline {
     RELEASE = "1.0.0"
     DOCKER_USER = "cocosonny"
     DOCKER_PASS = credentials("dockerhub")
-    IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
+    IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
     IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     JENKINS_API_TOKEN = credentials("jenkins-agent")
     }
@@ -49,7 +49,7 @@ pipeline {
         stage("Debug") {
             steps {
                 script {
-                    println "JENKINS_API_TOKEN: ${JENKINS_API_TOKEN}"
+                    println "DOCKER_PASS = credentials("dockerhub")"
                 }
             }
         }
