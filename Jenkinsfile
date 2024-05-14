@@ -38,7 +38,7 @@ pipeline {
         stage("Debug") {
             steps {
                 script {
-                    println "DOCKER_PASS = credentials("dockerhub")"
+                    println "DOCKER_PASS = ${DOCKER_PASS}"
                 }
             }
         }
