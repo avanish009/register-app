@@ -63,11 +63,8 @@ pipeline {
         stage ('Cleanup Artifacts') {
            steps {
                script {
-	            	// Remove specific image tag
-	            	sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}" || true // Ignore failure if image doesn't exist
-	
-	            	// Remove 'latest' tag
-	            	sh "docker rmi ${IMAGE_NAME}:latest" || true // Ignore failure if image doesn't exist
+		    sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}" || true
+		    sh "docker rmi ${IMAGE_NAME}:latest" || true
                }
           }
        }
